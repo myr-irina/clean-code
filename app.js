@@ -33,12 +33,12 @@ var createNewTaskElement = function(taskString) {
 
   label.innerText = taskString;
   label.className = "task";
-  listItem.className = "todo-list__item"
-  label.className = "task task__label"
+  listItem.className = "todo-list__item";
+  label.className = "task task__label";
 
   //Each elements, needs appending
   checkBox.type = "checkbox";
-  checkBox.className = "todo-list__checkbox"
+  checkBox.className = "todo-list__checkbox";
   editInput.type = "text";
   editInput.className = "task task__text";
 
@@ -47,7 +47,7 @@ var createNewTaskElement = function(taskString) {
 
   deleteButton.className = "delete button";
   deleteButtonImg.src = "./remove.svg";
-  deleteButtonImg.className = "button__image"
+  deleteButtonImg.className = "button__image";
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -58,7 +58,7 @@ var createNewTaskElement = function(taskString) {
   listItem.appendChild(editButton);
   listItem.appendChild(deleteButton);
   return listItem;
-}
+};
 
 
 
@@ -73,7 +73,7 @@ var addTask = function() {
   bindTaskEvents(listItem, taskCompleted);
 
   taskInput.value="";
-}
+};
 
 //Edit an existing task.
 
@@ -111,7 +111,7 @@ var deleteTask = function() {
   var ul = listItem.parentNode; 
   //Remove the parent list item from the ul.
   ul.removeChild(listItem);
-}
+};
 
 
 //Mark task completed
@@ -122,7 +122,7 @@ var taskCompleted = function() {
   var listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
-}
+};
 
 
 var taskIncomplete = function() {
@@ -133,13 +133,13 @@ var taskIncomplete = function() {
   var listItem = this.parentNode;
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
-}
+};
 
 
 
 var ajaxRequest = function() {
   console.log("AJAX Request");
-}
+};
 
 //The glue to hold it all together.
 
@@ -164,21 +164,21 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
   deleteButton.onclick = deleteTask;
   //Bind taskCompleted to checkBoxEventHandler.
   checkBox.onchange = checkBoxEventHandler;
-}
+};
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
 for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
   //bind events to list items chldren(tasksCompleted)
   bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
-}
+};
 
 
 //cycle over completedTasksHolder ul list items
 for (var i = 0; i < completedTasksHolder.children.length; i++) {
   //bind events to list items chldren(tasksIncompleted)
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
-}
+};
 
 
 // Issues with usability don't get seen until they are in front of a human tester.
